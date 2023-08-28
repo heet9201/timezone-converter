@@ -12,17 +12,9 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 const Table = ({ theme, setTheme }) => {
-  const url = "https://worldtimeapi.org/api/timezone/";
-  const [timezone, setTimezone] = React.useState([
-    "Asia/Kolkata",
-    "Asia/Dubai",
-  ]);
+  const [timezone, setTimezone] = React.useState([]);
   const [global, setGlobal] = React.useState(0);
-  const [tada, setTada] = React.useState([
-    { timezone: "Asia/Kolkata", city: "Kolkata" },
-    { timezone: "America/New_York", city: "New York City" },
-  ]);
-  const [hover, setHover] = React.useState();
+  const [tada, setTada] = React.useState([]);
 
   const data = timezones;
 
@@ -95,12 +87,6 @@ const Table = ({ theme, setTheme }) => {
                                 snapshot.isDragging,
                                 provided.draggableProps.style
                               )}
-                              onMouseEnter={() => {
-                                setHover(index);
-                              }}
-                              onMouseLeave={() => {
-                                setHover(null);
-                              }}
                             >
                               <div className="relative">
                                 <div
@@ -325,29 +311,19 @@ const Table = ({ theme, setTheme }) => {
                                       setTada={setTada}
                                     />
                                   </div>
-                                  {hover != null
-                                    ? tada.map((ind) => {
-                                        if (index === hover) {
-                                          return (
-                                            <AiOutlineClose
-                                              key={ind.timezone}
-                                              className="text-red-500 cursor-pointer absolute top-2 right-2 text-2xl"
-                                              onClick={(e) => {
-                                                const items = tada.filter(
-                                                  (i) =>
-                                                    i.timezone !== item.timezone
-                                                );
-                                                const items2 = timezone.filter(
-                                                  (i) => i !== item.timezone
-                                                );
-                                                setTada(items);
-                                                setTimezone(items2);
-                                              }}
-                                            />
-                                          );
-                                        }
-                                      })
-                                    : null}
+                                  <AiOutlineClose
+                                    className="text-red-500 cursor-pointer absolute top-2 right-2 text-2xl"
+                                    onClick={(e) => {
+                                      const items = tada.filter(
+                                        (i) => i.timezone !== item.timezone
+                                      );
+                                      const items2 = timezone.filter(
+                                        (i1) => i1 !== item.timezone
+                                      );
+                                      setTada(items);
+                                      setTimezone(items2);
+                                    }}
+                                  />
                                 </div>
                               </div>
                             </li>
