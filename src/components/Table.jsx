@@ -326,11 +326,11 @@ const Table = ({ theme, setTheme }) => {
                                     />
                                   </div>
                                   {hover != null
-                                    ? tada.map(() => {
+                                    ? tada.map((ind) => {
                                         if (index === hover) {
                                           return (
                                             <AiOutlineClose
-                                              key={item.timezone}
+                                              key={ind.timezone}
                                               className="text-red-500 cursor-pointer absolute top-2 right-2 text-2xl"
                                               onClick={(e) => {
                                                 const items = tada.filter(
